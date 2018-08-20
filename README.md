@@ -29,7 +29,7 @@ To use the virtual environment, you can activate it with:
 $ source env/bin/activate
 ```
 
-### Installation
+### Installation & Migrations
 
 Install the project packages including Django:
 
@@ -44,4 +44,36 @@ Install GraphiQL - GUI for editing and testing GraphQL queries and mutations:
 ```
 brew cask install graphiql
 ```
+
+And you run the migrations:
+
+```
+(venv) $ python manage.py makemigrations
+(venv) $ python manage.py migrate
+```
+
+### Run server
+
+With this command:
+
+```
+(venv) $ python manage.py runserver
+```
+
+### Populate the database in Django UI
+
+Go to the Admin page:
+
+```
+localhost:0800/admin
+```
+
+### In browser:
+
+Run the local server with GraphiQL:
+
+```
+localhost:0800/graphiql
+```
+
 
