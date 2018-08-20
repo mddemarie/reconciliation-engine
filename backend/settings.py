@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'backend.reconciliation',
 ]
 
+GRAPHENE = {
+    'SCHEMA': 'backend.schema.schema'
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
