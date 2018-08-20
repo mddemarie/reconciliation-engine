@@ -34,7 +34,7 @@ $ source env/bin/activate
 Install the project packages including Django:
 
 ```
-(venv) $ pip install -r requirements.txt
+(env) $ pip install -r requirements.txt
 ```
 
 ##### On Mac
