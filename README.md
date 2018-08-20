@@ -65,7 +65,7 @@ With this command:
 Go to the Admin page:
 
 ```
-localhost:0800/admin
+localhost:8000/admin
 ```
 
 ### In browser:
@@ -73,7 +73,7 @@ localhost:0800/admin
 Run the local server with GraphiQL:
 
 ```
-localhost:0800/graphiql
+localhost:8000/graphiql
 ```
 
 
