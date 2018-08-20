@@ -36,3 +36,7 @@ class PaymentLink(models.Model):
     payment_date = models.DateField()
     payment_reference = Payable.reference_id
     amount = Payable.amount
+
+    def __str__(self):
+        transaction = Transaction.objects.filter(payable__amount__gt=0).count()
+        return 'Expected number of Business Transactions: {}'.format(transaction)
