@@ -34,3 +34,5 @@ class Payment(models.Model):
 
 class PaymentLink(models.Model):
     payment_date = models.DateField()
+    payment_reference = Payable.reference_id
+    amount = Payable.amount
