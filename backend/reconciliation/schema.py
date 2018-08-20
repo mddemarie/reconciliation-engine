@@ -1,28 +1,47 @@
-from graphene import Node
-from graphene_django import DjangoObjectType
-from graphene_django.filter import DjangoFilterConnectionField
+import graphene
+
+from graphene_django.types import DjangoObjectType
 
 from .models import Payable, Business, Transaction, Payment, PaymentLink
 
-#TODO: here should be also Schema for Business, Transaction, Payment
-
-class PayableNode(DjangoObjectType):
-
+class PayableType(DjangoObjectType):
     class Meta:
         model = Payable
-        interfaces = (Node, )
-        filter_fields = ['amount']
 
-class PaymentLinkNode(DjangoObjectType):
+class BusinessType(DjangoObjectType):
+    class Meta:
+        model = Business
 
+class TransactionType(DjangoObjectType):
+    class Meta:
+        model = Transaction
+
+class PaymentType(DjangoObjectType):
+    class Meta:
+        model = Payment
+
+class PaymentLinkType(DjangoObjectType):
     class Meta:
         model = PaymentLink
-        # filter_fields = []
-        interfaces = (Node, )
 
-class Query(object):
-    payable = Node.Field(PayableNode)
-    all_payables = DjangoFilterConnectionField(PayableNode)
+class Query(graphene.AbstractType):
+    all_payables = graphene.List(PayableType)
+    all_businesses = graphene.List(BusinessType)
+    all_transactions = graphene.List(TransactionType)
+    all_payments = graphene.List(PaymentType)
+    all_links = graphene.List(PaymentLinkType)
 
-    link = Node.Field(PaymentLinkNode)
-    all_links = DjangoFilterConnectionField(PaymentLinkNode)
+    def resolve_all_payables(self, args):
+        return Payable.objects.all()
+    
+    def resolve_all_businesses(self, args):
+        return Business.objects.all()
+
+    def resolve_all_transactions(self, args):
+        return Transaction.objects.all()
+
+    def resolve_all_payments(self, args):
+        return Payment.objects.all()
+
+    def resolve_all_links(self, args):
+        return PaymentLink.objects.all()
